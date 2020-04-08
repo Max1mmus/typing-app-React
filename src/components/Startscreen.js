@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Startscreen = (props) => {
     return (
-        <div className='startApp' style={props.styling}>
+        <div className={props.className}>
             <div className='startButton' onClick={props.startGame}>
                 <span>Start</span>
             </div>
