@@ -4,39 +4,42 @@ export class TermContainer extends React.Component {
 
     makeLetterContainer () {
         const termLetters = this.props.alt.split('');
-        let indexesToShow = this.props.letterIndex;
+        let indexesToHide = this.props.letterIndex;
         const container = termLetters.map(
             (letter,index) => {
                 return (
-                    <span className={indexesToShow.indexOf(index) > -1 ? 'showLetter' : 'hideLetter'}
+                    <span className={indexesToHide.indexOf(index) > -1 ? 'hideLetter' : 'showLetter'}
                         key={index}>
                         {letter}
                     </span>
                 )
             });
-            return container
+        return container;
+    }
+
+    generateStars () {
+        let steps = this.props.steps;
+        let stars = [];
+        for (let i=0; i < steps; i++) {
+            stars.push(<i className="fa fa-star" aria-hidden="true"></i>) 
+        }
+        return stars;
     }
 
     render () {
         return(
-            <div className='gameContainer'
-                letterstohide={this.props.lettersToHide}
-                gamestate={this.props.gameStart.toString()}>
-                
-                    <img alt={this.props.alt} src={this.props.sources}/>
-                    <div className='letterContainer'>
-                        {
-                            this.props.gameStart.toString() ? this.makeLetterContainer() : null
-                        }
-                    </div>
-                    <p>Type in a letter!</p>
-                    <div>
-                        <i className="fa fa-star" aria-hidden="true"></i>
-                    </div>
+            <div className='gameContainer'>
+                <img alt={this.props.alt} src={this.props.sources}/>
+                <div className='letterContainer'>
+                   {
+                       this.props.gameStart.toString() ? this.makeLetterContainer() : null
+                    }
+                </div>
+                <p>Type in a letter!</p>
+                <div>
+                    {this.generateStars()}
+                </div>
             </div>
         );
     }   
 }
-
-
-        

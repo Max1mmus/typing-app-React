@@ -31,46 +31,13 @@ export class App extends React.Component {
         this.onClick = this.onClick.bind(this);
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.shuffleArray = this.shuffleArray.bind(this);
+        this.handleNextButtonClick = this.handleNextButtonClick.bind(this);
+        this.handleTerm = this.handleTerm.bind(this);
     }
 
     componentDidMount () {
         window.addEventListener('onkeydown', this.handleKeyDown);
         this.shuffleArray(terms);
-    }
-
-    onClick () {
-        const hasStarted = this.state.gameStarted ? false : true;
-        window.onkeydown = this.handleKeyDown;
-        
-        let counter = 0;
-        let numOfLettersToShow = 2;
-        let termToBeModified = terms[this.state.step].split('');
-        let randomIndexes = [];
-        while (counter < numOfLettersToShow) {
-            let randomNum = Math.floor(Math.random()*terms[this.state.step].length);
-            
-            termToBeModified.splice(randomNum,1);
-            randomIndexes.push(randomNum)
-            console.log(randomNum)
-            counter++;
-        }
-        
-        this.setState({
-            gameStarted: hasStarted,
-            currentTerm: terms[this.state.step],
-            hiddenLetters: termToBeModified,
-            shownLettersIndex: randomIndexes, 
-        })
-        
-        
-        document.body.style.backgroundImage = `linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%)`;
-    }
-
-    handleKeyDown (e) {
-        let guessedLetters = 0;
-        let currTerm = this.state.currentTerm.split('');
-        let hiddenLetterIndex = this.state.shownLettersIndex;
-        let pressedKey = String.fromCharCode(e.which).toLowerCase();
     }
 
     shuffleArray (array) {
@@ -86,6 +53,70 @@ export class App extends React.Component {
         return array
     }
 
+    onClick () {
+        const hasStarted = this.state.gameStarted ? false : true;
+        window.onkeydown = this.handleKeyDown;
+        this.setState({
+            gameStarted: hasStarted
+        })
+        this.handleTerm();
+        document.body.style.backgroundImage = `linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%)`;
+    }
+
+    handleKeyDown (e) {
+        let hiddenLetters = this.state.hiddenLetters;
+        let hiddenLetterIndex = this.state.indexesToHide;
+        let pressedKey = String.fromCharCode(e.which).toLowerCase();
+        
+        console.log(pressedKey);
+
+        if (hiddenLetters.indexOf(pressedKey) > -1) {
+            console.log('its a match');
+            hiddenLetterIndex.splice(hiddenLetters.indexOf(pressedKey), 1);
+            hiddenLetters.splice(hiddenLetters.indexOf(pressedKey), 1);
+            this.setState({
+                indexesToHide: hiddenLetterIndex,
+                hiddenLetters: hiddenLetters
+            })
+        } else {
+            console.log('not a match')
+        }
+        
+        if (hiddenLetters.length === 0) {
+            this.setState({
+                taskCompleted: true,
+                step: this.state.step +1
+            })
+            this.handleTerm();
+        } 
+    }
+
+    handleTerm () {
+        let currTerm = terms[this.state.step].split('');
+        let numOfIndexesToHide = currTerm.length -1;
+        let randomIndexes = [];
+        let slicedLetters = [];
+        while(randomIndexes.length < numOfIndexesToHide) {
+            let randomNum = Math.floor(Math.random()*currTerm.length)
+            if (randomIndexes.indexOf(randomNum) === -1) {
+                randomIndexes.push(randomNum);
+                slicedLetters.push(currTerm.slice(randomNum, randomNum+1).join())
+            }
+        }
+        
+        this.setState({
+            currentTerm: terms[this.state.step],
+            hiddenLetters: slicedLetters,
+            indexesToHide: randomIndexes, 
+        })
+    }
+
+    handleNextButtonClick () {
+        this.setState({
+            taskCompleted:false,
+        })
+    }
+
     render () {
         return (
             <div className='appContainer'>
@@ -95,17 +126,18 @@ export class App extends React.Component {
                 {
                     this.state.gameStarted ? 
                         <TermContainer
-                            letterIndex={this.state.shownLettersIndex}
+                            letterIndex={this.state.indexesToHide}
                             gameStart={this.state.gameStarted}
                             sources={`./images/${terms[this.state.step]}.jpg`}
-                            alt={terms[this.state.step]} />
+                            alt={terms[this.state.step]}
+                            steps={this.state.step} />
                     : null
                 }
                 {
                     this.state.taskCompleted ? 
                         <NextTask 
-                            isCompleted={this.state.taskCompleted}
-                            className={!this.state.taskCompleted ? 'nextTaskDisplay' : 'none'} />
+                            className='nextTaskDisplay'
+                            handleNext= {this.handleNextButtonClick} />
                     : null
                 }
             </div>
