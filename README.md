@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ##### Source for images used in project: [Pexels](https://www.pexels.com/) (free stock photos)
 
-## In the project directory run
+### In the project directory run
 
 ### `npm start`
 
@@ -17,7 +17,7 @@ You will also see any lint errors in the console.
 
 
 
-## Learn More
+### Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
