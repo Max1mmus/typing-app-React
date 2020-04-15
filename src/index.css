@@ -59,7 +59,7 @@ code {
   margin: auto;
 }
 
-.startButton:hover {
+.startButton:hover, .endButton:hover{
   background-color: #a8edea;
   cursor: pointer;
 }
@@ -141,4 +141,25 @@ img {
   border-radius: 5px;
   outline: none;
   cursor: pointer;
+}
+
+.endScreen {
+  margin: auto;
+  margin-top: 100px;
+  font-size: 30px;
+  width: max-content;
+  text-align: center;
+}
+
+.endButton {
+  width: 150px;
+  height: 150px;
+  border: 1px solid;
+  border-radius: 100px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 45px;
+  margin: auto;
 }
