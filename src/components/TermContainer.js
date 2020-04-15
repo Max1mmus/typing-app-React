@@ -18,9 +18,9 @@ export class TermContainer extends React.Component {
     }
 
     generateStars () {
-        let steps = this.props.steps;
+        let score = this.props.score;
         let stars = [];
-        for (let i=0; i < steps; i++) {
+        for (let i=0; i < score; i++) {
             stars.push(<i className="fa fa-star" aria-hidden="true"></i>) 
         }
         return stars;
