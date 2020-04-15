@@ -1,7 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ### Preview
 
-<img src='preview.jpeg' width='400'>
+<img src='preview.jpeg' width='500'>
+
+##### Source for images used in project: [Pexels](https://www.pexels.com/) (free stock photos)
 
 ## In the project directory run
 
@@ -13,7 +15,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-#### Image sources : [Pexels](https://www.pexels.com/) (free stock photos)
+
 
 ## Learn More
 
