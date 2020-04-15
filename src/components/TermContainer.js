@@ -27,12 +27,13 @@ export class TermContainer extends React.Component {
     }
 
     render () {
+        if (this.props.gameStart && this.props.alt !== undefined) {
         return(
             <div className='gameContainer'>
                 <img alt={this.props.alt} src={this.props.sources}/>
                 <div className='letterContainer'>
                    {
-                       this.props.gameStart.toString() ? this.makeLetterContainer() : null
+                       this.makeLetterContainer()
                     }
                 </div>
                 <p>Type in a letter!</p>
@@ -40,6 +41,8 @@ export class TermContainer extends React.Component {
                     {this.generateStars()}
                 </div>
             </div>
-        );
-    }   
+        )} else {
+            return null
+        }
+    }
 }
