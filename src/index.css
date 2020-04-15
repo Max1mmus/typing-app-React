@@ -23,10 +23,6 @@ code {
   margin-top: 70px;
 }
 
-.hidden {
-  display: none;
-}
-
 .hideLetter {
   border-radius: 5px;
   color: #a9a9a900;
