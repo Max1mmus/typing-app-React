@@ -2,7 +2,8 @@ import React from 'react';
 import {Startscreen} from './Startscreen';
 import {TermContainer} from './TermContainer';
 import { NextTask } from './NextTask';
-//img sources pexel.com
+import {EndScreen} from './EndScreen';
+
 const terms = [
     'lion',
     'desert',
@@ -16,6 +17,8 @@ const terms = [
     'frog'
 ];
 
+let wrongLetters = 0;
+
 export class App extends React.Component {
     constructor (props) {
         super(props);
@@ -23,9 +26,11 @@ export class App extends React.Component {
         this.state = {
             gameStarted: false,
             taskCompleted: false,
+            gameEnded: false,
             currentTerm: [],
             hiddenLetters:[],
             step: 0,
+            score: 0
         }
 
         this.onClick = this.onClick.bind(this);
@@ -54,7 +59,7 @@ export class App extends React.Component {
     }
 
     onClick () {
-        const hasStarted = this.state.gameStarted ? false : true;
+        const hasStarted = !this.state.gameStarted;
         window.onkeydown = this.handleKeyDown;
         this.setState({
             gameStarted: hasStarted
@@ -64,14 +69,13 @@ export class App extends React.Component {
     }
 
     handleKeyDown (e) {
+
         let hiddenLetters = this.state.hiddenLetters;
         let hiddenLetterIndex = this.state.indexesToHide;
         let pressedKey = String.fromCharCode(e.which).toLowerCase();
-        
         console.log(pressedKey);
 
         if (hiddenLetters.indexOf(pressedKey) > -1) {
-            console.log('its a match');
             hiddenLetterIndex.splice(hiddenLetters.indexOf(pressedKey), 1);
             hiddenLetters.splice(hiddenLetters.indexOf(pressedKey), 1);
             this.setState({
@@ -80,22 +84,36 @@ export class App extends React.Component {
             })
         } else {
             console.log('not a match')
+            wrongLetters++
         }
-        
+
         if (hiddenLetters.length === 0) {
             this.setState({
                 taskCompleted: true,
-                step: this.state.step +1
+            })           
+        }
+
+        if (hiddenLetters.length === 0 && wrongLetters === 0) {
+            this.setState({
+                score: this.state.score + 1
             })
-            this.handleTerm();
-        } 
+        }
     }
 
     handleTerm () {
+        if (terms[this.state.step] === undefined) {
+            this.setState ({
+                gameEnded: true,
+                gameStarted: false
+            })
+            return
+        }
+
         let currTerm = terms[this.state.step].split('');
-        let numOfIndexesToHide = currTerm.length -1;
+        let numOfIndexesToHide = currTerm.length - 1;
         let randomIndexes = [];
         let slicedLetters = [];
+
         while(randomIndexes.length < numOfIndexesToHide) {
             let randomNum = Math.floor(Math.random()*currTerm.length)
             if (randomIndexes.indexOf(randomNum) === -1) {
@@ -114,31 +132,56 @@ export class App extends React.Component {
     handleNextButtonClick () {
         this.setState({
             taskCompleted:false,
+            step: this.state.step + 1,
+        }, () => this.handleTerm())
+        wrongLetters = 0;
+    }
+
+    handleEnd = () => {
+        this.setState({
+            gameStarted: true,
+            gameEnded: false,
+            step: 0,
+            score: 0
+        }, () => {
+            this.shuffleArray(terms);
+            this.handleTerm();
         })
+        
     }
 
     render () {
         return (
             <div className='appContainer'>
-                <Startscreen
-                    startGame={this.onClick}
-                    className={!this.state.gameStarted ? 'startApp' : 'hidden'} />
+               {
+                    !this.state.gameStarted && !this.state.gameEnded ?
+                        <Startscreen
+                            startGame={this.onClick}
+                            className='startApp' /> : null
+                }
                 {
-                    this.state.gameStarted ? 
+                    this.state.gameStarted && !this.state.gameEnded ? 
                         <TermContainer
                             letterIndex={this.state.indexesToHide}
                             gameStart={this.state.gameStarted}
                             sources={`./images/${terms[this.state.step]}.jpg`}
                             alt={terms[this.state.step]}
-                            steps={this.state.step} />
-                    : null
+                            score={this.state.score} /> : null
                 }
                 {
-                    this.state.taskCompleted ? 
+                    this.state.taskCompleted && !this.state.gameEnded ? 
                         <NextTask 
                             className='nextTaskDisplay'
-                            handleNext= {this.handleNextButtonClick} />
-                    : null
+                            handleNext= {this.handleNextButtonClick}
+                            score={this.state.score} /> : null
+                }
+                {
+                    this.state.gameEnded ?
+                        <EndScreen
+                            className='endScreen'
+                            handleEnd={this.handleEnd}
+                            score={this.state.score}
+                            termsLength={terms.length} /> : null
                 }
             </div>
         )
