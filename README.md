@@ -1,4 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Preview
+
+<img src='preview.jpeg' width='400'>
 
 ## In the project directory run
 
