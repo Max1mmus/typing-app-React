@@ -1,7 +1,9 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 ### Preview
 
-<img src='preview.jpeg' width='500'>
+Live version : [Typing app](https://max1mmus.github.io/typing-app-React/)
+
+<img src='preview.jpeg' width='800'>
 
 ##### Source for images used in project: [Pexels](https://www.pexels.com/) (free stock photos)
 
@@ -18,6 +20,8 @@ You will also see any lint errors in the console.
 
 
 ### Learn More
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
