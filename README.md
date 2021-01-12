@@ -1,6 +1,9 @@
 ### About:
-Simple game made in React. Objective is to guess all letters without making any mistakes. For each guess without misspell you get a star.
-Primary purpose was to practice React. Enjoy :)
+Simple game made in React.  
+Objective is to guess all letters without making any mistakes. For each guess without misspell you get a star.  
+Primary purpose was to practice React.  
+If you like it :star: it.  
+Enjoy :)
 
 ### Preview
 
