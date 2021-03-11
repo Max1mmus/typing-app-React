@@ -184,7 +184,7 @@ export class App extends React.Component {
                             termsLength={terms.length} /> : null
                 }
                 <footer>
-                    Coded with <span id="heart"> ❤ </span> 
+                    Built with <span id="heart"> ❤ </span> 
                     By: <a id="Max1mmus" href="https://github.com/Max1mmus">Max1mmus</a>
                 </footer>
             </div>
