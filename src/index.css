@@ -169,18 +169,3 @@ img {
 .score {
   font-weight: bold;
 }
-
-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: max-content;
-  margin: auto;
-}
-#heart {
-  color: red;
-}
-#Max1mmus {
-  color: black;
-}

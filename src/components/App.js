@@ -183,10 +183,6 @@ export class App extends React.Component {
                             score={this.state.score}
                             termsLength={terms.length} /> : null
                 }
-                <footer>
-                    Built with <span id="heart"> ❤ </span> 
-                    By: <a id="Max1mmus" href="https://github.com/Max1mmus">Max1mmus</a>
-                </footer>
             </div>
         )
     }
