@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/typing-app-React/static/css/main.cf2ee7f9.chunk.css",
-    "main.js": "/typing-app-React/static/js/main.61cd4ffa.chunk.js",
-    "main.js.map": "/typing-app-React/static/js/main.61cd4ffa.chunk.js.map",
+    "main.css": "/typing-app-React/static/css/main.20c4402a.chunk.css",
+    "main.js": "/typing-app-React/static/js/main.fadadbf9.chunk.js",
+    "main.js.map": "/typing-app-React/static/js/main.fadadbf9.chunk.js.map",
     "runtime-main.js": "/typing-app-React/static/js/runtime-main.a2446f76.js",
     "runtime-main.js.map": "/typing-app-React/static/js/runtime-main.a2446f76.js.map",
     "static/js/2.8ec4e707.chunk.js": "/typing-app-React/static/js/2.8ec4e707.chunk.js",
     "static/js/2.8ec4e707.chunk.js.map": "/typing-app-React/static/js/2.8ec4e707.chunk.js.map",
     "index.html": "/typing-app-React/index.html",
-    "static/css/main.cf2ee7f9.chunk.css.map": "/typing-app-React/static/css/main.cf2ee7f9.chunk.css.map",
+    "static/css/main.20c4402a.chunk.css.map": "/typing-app-React/static/css/main.20c4402a.chunk.css.map",
     "static/js/2.8ec4e707.chunk.js.LICENSE.txt": "/typing-app-React/static/js/2.8ec4e707.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a2446f76.js",
     "static/js/2.8ec4e707.chunk.js",
-    "static/css/main.cf2ee7f9.chunk.css",
-    "static/js/main.61cd4ffa.chunk.js"
+    "static/css/main.20c4402a.chunk.css",
+    "static/js/main.fadadbf9.chunk.js"
   ]
 }
